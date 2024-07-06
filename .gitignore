@@ -1,0 +1,20 @@
+# Node modules
+medstore-prototype/node_modules
+medstore-backend/node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variable files
+.env
+
+# macOS files
+.DS_Store

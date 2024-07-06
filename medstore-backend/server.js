@@ -3,9 +3,11 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware
 app.use(express.json());
 
-mongoose.connect('your_mongodb_connection_string', {
+// MongoDB Connection
+mongoose.connect('mongodb://localhost:27017/', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
@@ -14,10 +16,15 @@ mongoose.connect('your_mongodb_connection_string', {
   console.error('Error connecting to MongoDB', err);
 });
 
-app.get('/', (req, res) => {
-  res.send('Server is up and running');
-});
+// Routes
+const medicineRoutes = require('./routes/medicine');
+const authRoutes = require('./routes/auth');
 
+// Use routes
+app.use('/medicines', medicineRoutes);
+app.use('/auth', authRoutes);
+
+// Start Server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
